@@ -1,0 +1,26 @@
+{
+    "name": "YFSENSORS",
+    "version": "0.1.5",
+    "description": "This is a MakeCode graphics programming extension for YFROBOT's sensors(lego) module.",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "microphone": "*"
+    },
+    "files": [
+        "main.ts",
+        "README.md",
+        "_locales/zh-cn/YFSENSORS-strings.json",
+        "_locales/zh-cn/YFSENSORS-jsdoc-strings.json",
+        "_locales/zh-tw/YFSENSORS-strings.json",
+        "_locales/zh-tw/YFSENSORS-jsdoc-strings.json"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true,
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}

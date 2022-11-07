@@ -1043,7 +1043,7 @@ namespace YFSENSORS {
                 break;
             case YFTrafficLightLED.GreenLED:          // Green LED
                 pins.digitalWritePin(tlm1Pin, 1);
-                pins.digitalWritePin(tlm2Pin, 2);
+                pins.digitalWritePin(tlm2Pin, 1);
                 break;
             default: // YFTrafficLightLED.AllTurnOFF: // all lights turn off
                 pins.digitalWritePin(tlm1Pin, 0);

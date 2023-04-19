@@ -1121,11 +1121,16 @@ namespace YFSENSORS {
         }
     }
 
+    /**
+     * Read the Button Module.
+     * @param dimPin pin. eg: DigitalPin.P8
+     * @param value pin. eg: enButton.Press
+     */
     //% group="Input"
     //% blockId=YFSENSORS_Digital_Button weight=83 blockGap=15
     //% block="Button|pin %dimPin|value %value" 
     //% dimPin.fieldEditor="gridpicker" dimPin.fieldOptions.columns=4
-    //% value.fieldEditor="gridpicker" dimPin.fieldOptions.columns=2
+    //% value.fieldEditor="gridpicker" value.fieldOptions.columns=2
     export function Button(dimPin: DigitalPin, value: enButton): boolean {
         pins.setPull(dimPin, PinPullMode.PullNone);
 		let pin = dimPin;

@@ -11,6 +11,13 @@
 */
 
 
+enum enButton {
+    //% blockId="Press" block="Press"
+    Press = 0,
+    //% blockId="Realse" block="Realse"
+    Realse = 1
+}	
+
 enum YFIrProtocol {
     //% block="Keyestudio"
     Keyestudio = 0,
@@ -1112,6 +1119,17 @@ namespace YFSENSORS {
             if (a == 1) return true;
             else    return false;
         }
+    }
+
+    //% group="Input"
+    //% blockId=YFSENSORS_Digital_Button weight=83 blockGap=15
+    //% block="Button|pin %dimPin|value %value" 
+    //% dimPin.fieldEditor="gridpicker" dimPin.fieldOptions.columns=4
+    //% value.fieldEditor="gridpicker" dimPin.fieldOptions.columns=2
+    export function Button(dimPin: DigitalPin, value: enButton): boolean {
+        pins.setPull(dimPin, PinPullMode.PullNone);
+		let pin = dimPin;
+        return pins.digitalReadPin(pin) == value;
     }
 
     /** not work 

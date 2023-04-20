@@ -125,6 +125,7 @@
   "YFDHT11_state.DHT11_temperature_C|block": "温度(℃)",
   "YFSENSORS.dht11Sensor|block": "DHT11温湿度传感器 %pin %dht11state 值",
   "YFSENSORS.ping|block": "超声波trig|%trig|echo|%echo|单位|%unit",
+  "YFSENSORS.ping2|block": "超声波trig|%trig|echo|%echo|单位|%unit",
   "YFPingUnit.Centimeters|block": "cm",
   "YFPingUnit.Inches|block": "inches",
   "YFPingUnit.MicroSeconds|block": "μs",

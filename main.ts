@@ -1252,10 +1252,42 @@ namespace YFSENSORS {
         switch (unit) {
             case YFPingUnit.Centimeters: return Math.idiv(d, 58);
             case YFPingUnit.Inches: return Math.idiv(d, 148);
-            default: return d ;
+            default: return Math.idiv(d, 58) ;
         }
     }
 
+    /**
+     * Send a ping and get the echo time (in microseconds) as a result
+     * @param trig trigger pin. eg: DigitalPin.P0
+     * @param echo echo pin. eg: DigitalPin.P8
+     * @param unit desired conversion unit. eg: YFPingUnit.Centimeters
+     * @param maxCmDistance maximum distance in centimeters (default is 450)
+     */
+    //% group="Input"
+    //% blockId=YFSENSORS_sonar_ping2 weight=78 blockGap=15
+    //% block="ping trig |%trig echo |%echo unit |%unit"
+    //% trig.fieldEditor="gridpicker" trig.fieldOptions.columns=4 
+    //% echo.fieldEditor="gridpicker" echo.fieldOptions.columns=4 
+    //% unit.fieldEditor="gridpicker" unit.fieldOptions.columns=3
+    //% inlineInputMode=inline
+    export function ping2(trig: DigitalPin, echo: DigitalPin, unit: YFPingUnit, maxCmDistance = 450): number {
+        // send pulse
+        pins.setPull(trig, PinPullMode.PullNone);
+        pins.digitalWritePin(trig, 0);
+        control.waitMicros(5);
+        pins.digitalWritePin(trig, 1);
+        control.waitMicros(15);
+        pins.digitalWritePin(trig, 0);
+
+        // read pulse
+        const d = pins.pulseIn(echo, PulseValue.High, maxCmDistance * 58);
+
+        switch (unit) {
+            case YFPingUnit.Centimeters: return Math.idiv(d, 58);
+            case YFPingUnit.Inches: return Math.idiv(d, 148);
+            default: return Math.idiv(d, 58) ;
+        }
+    }
     
     ///////////////////// Output - Motor Drive ///////////////////////
     /**

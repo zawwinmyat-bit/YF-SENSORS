@@ -1281,7 +1281,7 @@ namespace YFSENSORS {
 
         // read pulse
         const d = pins.pulseIn(echo, PulseValue.High, maxCmDistance * 58);
-        control.waitMicros(300);
+        basic.pause(30); // 30ms
         switch (unit) {
             case YFPingUnit.Centimeters: return Math.idiv(d, 58);
             case YFPingUnit.Inches: return Math.idiv(d, 148);

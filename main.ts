@@ -1247,14 +1247,20 @@ namespace YFSENSORS {
         pins.digitalWritePin(trig, 0);
 
         // read pulse
-        let d = pins.pulseIn(echo, PulseValue.High, maxCmDistance * 58);
+        let d = pins.pulseIn(echo, PulseValue.High);
 
-        basic.pause(30)
-        
         switch (unit) {
-            case YFPingUnit.Centimeters: return Math.idiv(d, 58);
-            case YFPingUnit.Inches: return Math.idiv(d, 148);
-            default: return d ;
+            case YFPingUnit.Centimeters:
+                let d_C = Math.idiv(d, 58);
+                basic.pause(30)
+                return d_C;
+            case YFPingUnit.Inches:
+                let d_I = Math.idiv(d, 148);
+                basic.pause(30)
+                return d_I;
+            default:
+                basic.pause(30)
+                return d ;
         }
     }
     // /**

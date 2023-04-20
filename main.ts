@@ -580,10 +580,10 @@ enum YFDir {
 enum YFPingUnit {
     //% block="cm"
     Centimeters,
-    //% block="μs"
-    MicroSeconds,
     //% block="inches"
-    Inches
+    Inches,
+    //% block="μs"
+    MicroSeconds
 }
 
 enum YFDHT11_state {
@@ -1252,7 +1252,7 @@ namespace YFSENSORS {
         switch (unit) {
             case YFPingUnit.Centimeters: return Math.idiv(d, 58);
             case YFPingUnit.Inches: return Math.idiv(d, 148);
-            default: return Math.idiv(d, 58) ;
+            default: return d ;
         }
     }
 
@@ -1261,7 +1261,7 @@ namespace YFSENSORS {
      * @param trig trigger pin. eg: DigitalPin.P0
      * @param echo echo pin. eg: DigitalPin.P8
      * @param unit desired conversion unit. eg: YFPingUnit.Centimeters
-     * @param maxCmDistance maximum distance in centimeters (default is 450)
+     * @param maxCmDistance maximum distance in centimeters (default is 250)
      */
     //% group="Input"
     //% blockId=YFSENSORS_sonar_ping2 weight=78 blockGap=15
@@ -1270,13 +1270,13 @@ namespace YFSENSORS {
     //% echo.fieldEditor="gridpicker" echo.fieldOptions.columns=4 
     //% unit.fieldEditor="gridpicker" unit.fieldOptions.columns=3
     //% inlineInputMode=inline
-    export function ping2(trig: DigitalPin, echo: DigitalPin, unit: YFPingUnit, maxCmDistance = 450): number {
+    export function ping2(trig: DigitalPin, echo: DigitalPin, unit: YFPingUnit, maxCmDistance = 250): number {
         // send pulse
         pins.setPull(trig, PinPullMode.PullNone);
         pins.digitalWritePin(trig, 0);
-        control.waitMicros(5);
+        control.waitMicros(2);
         pins.digitalWritePin(trig, 1);
-        control.waitMicros(15);
+        control.waitMicros(10);
         pins.digitalWritePin(trig, 0);
 
         // read pulse
@@ -1285,7 +1285,7 @@ namespace YFSENSORS {
         switch (unit) {
             case YFPingUnit.Centimeters: return Math.idiv(d, 58);
             case YFPingUnit.Inches: return Math.idiv(d, 148);
-            default: return Math.idiv(d, 58) ;
+            default: return d ;
         }
     }
     

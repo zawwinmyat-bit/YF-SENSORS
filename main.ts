@@ -509,6 +509,16 @@ enum YFAnalogInputModule {
     ROCKER_X = 0x4,
     //% blockId="YFAIM_ROCKER_Y" block="ROCKER_Y"
     ROCKER_Y = 0x5,
+    //% blockId="YFAIM_MQ_GAS" block="MQ_GAS"
+    MQ_GAS = 0x6,
+    //% blockId="YFAIM_GRAYSCALE" block="GRAYSCALE"  灰度
+    GRAYSCALE = 0x7,
+    //% blockId="YFAIM_WATER" block="WATER"
+    WATER = 0x8,
+    //% blockId="YFAIM_FLAME" block="FLAME"
+    FLAME = 0x9,
+    //% blockId="YFAIM_PRESSURE" block="PRESSURE"
+    PRESSURE = 0xA,
 }
 
 enum YFDigitalInputModule {
@@ -532,6 +542,10 @@ enum YFDigitalInputModule {
     PATROL_LEFT = 0x08,
     //% blockId="YFDIM_PATROL_RIGHT" block="PATROL_RIGHT"
     PATROL_RIGHT = 0x09,
+    //% blockId="YFDIM_PATROL_SINGLE" block="PATROL_SINGLE"
+    PATROL_SINGLE = 0x0A,
+    //% blockId="YFDIM_LIQUID_LEVEL" block="LIQUID_LEVEL"
+    LIQUID_LEVEL = 0x0B,
 }
 
 enum YFDigitalInputModuleE {
@@ -1110,7 +1124,9 @@ namespace YFSENSORS {
         || dim == YFDigitalInputModule.INFRARED_PROXIMITY_SENSOR 
         || dim == YFDigitalInputModule.COLLISION_SWITCH
         || dim == YFDigitalInputModule.PATROL_LEFT 
-        || dim == YFDigitalInputModule.PATROL_RIGHT ){
+        || dim == YFDigitalInputModule.PATROL_RIGHT
+        || dim == YFDigitalInputModule.PATROL_SINGLE
+        || dim == YFDigitalInputModule.LIQUID_LEVEL ){
             a = pins.digitalReadPin(dimPin);
             if (a == 1) return false;
             else    return true;

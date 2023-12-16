@@ -1263,7 +1263,7 @@ namespace YFSENSORS {
         pins.digitalWritePin(trig, 0);
 
         // read pulse
-        let d = pins.pulseIn(echo, PulseValue.High, 50000);    // 最多等待 50 毫秒
+        let d = pins.pulseIn(echo, PulseValue.High, 105000);    // 最多等待 105 毫秒
 
         switch (unit) {
             case YFPingUnit.Centimeters:

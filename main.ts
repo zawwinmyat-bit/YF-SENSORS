@@ -1255,7 +1255,7 @@ namespace YFSENSORS {
     //% inlineInputMode=inline
     export function ping2(trig: DigitalPin, echo: DigitalPin, unit: YFPingUnit, maxCmDistance = 250): number {
         // send pulse
-        // pins.setPull(trig, PinPullMode.PullNone)
+        pins.setPull(trig, PinPullMode.PullNone)
         pins.digitalWritePin(trig, 0);
         control.waitMicros(2);
         pins.digitalWritePin(trig, 1);
@@ -1263,19 +1263,19 @@ namespace YFSENSORS {
         pins.digitalWritePin(trig, 0);
 
         // read pulse
-        let d = pins.pulseIn(echo, PulseValue.High);
+        let d = pins.pulseIn(echo, PulseValue.High, 50000);    // 最多等待 50 毫秒
 
         switch (unit) {
             case YFPingUnit.Centimeters:
                 let d_C = Math.idiv(d, 58);
-                basic.pause(30)
+                // basic.pause(30)
                 return d_C;
             case YFPingUnit.Inches:
                 let d_I = Math.idiv(d, 148);
-                basic.pause(30)
+                // basic.pause(30)
                 return d_I;
             default:
-                basic.pause(30)
+                // basic.pause(30)
                 return d ;
         }
     }
